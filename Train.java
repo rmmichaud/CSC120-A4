@@ -4,7 +4,12 @@ public class Train {
     // declares new engine and list of cars
     private final Engine engine;
     private ArrayList<Car> cars;
-    // constructor that establishes the fuel type, fuel capacity, number of cars, and passenger capacity
+    /** constructor that establishes the fuel type, fuel capacity, number of cars, and passenger capacity
+    * @param fuelType
+    * @param fuelCapacity
+    * @param nCars
+    * @param passengerCapacity
+    */
     public Train(FuelType fuelType, 
     double fuelCapacity, int nCars, 
     int passengerCapacity){
@@ -16,18 +21,25 @@ public class Train {
         }
 
     }
-    // returns the engine
+    /** returns the engine
+    * @return engine
+    */
     public Engine getEngine() {
         return this.engine;
     }
-    // returns the car 
+    /** returns the car 
+     * @return car
+     */
     public Car getCar(int i) {
         if (i > this.cars.size()) {
             System.out.println("The train doesn't have that many cars.");
         }
         return this.cars.get(i);
     }
-    // returns the capacity of the cars
+    /** returns the capacity of the cars
+     * @return total
+     */
+
     public int getMaxCapacity() {
         int total = 0;
         for (int i = 0; i < cars.size(); i++) {
@@ -35,7 +47,9 @@ public class Train {
         }
         return total;
     }
-    // checks how many seats are remaining in a car
+    /** checks how many seats are remaining in a car
+     * @return seatsLeft
+     */
     public int seatsRemaining() {
         int seatsLeft = 0;
         for (int i = 0; i < cars.size(); i++) {
@@ -67,6 +81,7 @@ public class Train {
         trainOne.cars.get(1).addPassenger(twoP);
         trainOne.cars.get(0).addPassenger(threeP);
         trainOne.cars.get(1).addPassenger(fourP);
+        trainOne.printManifest();
         trainOne.cars.get(0).removePassenger(oneP);
         System.out.println(trainOne.getMaxCapacity());
         System.out.println(trainOne.seatsRemaining());

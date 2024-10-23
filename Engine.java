@@ -16,10 +16,11 @@ public class Engine {
     public double getMaxFuel() {
         return maxFuel;
     }
-    // constructor, sets values of above attributes
-    // @param f stores the train's fuel type
-    // @param maxFuel stores the max fuel level
-    // @param currentLevel stores the current fuel level
+    /** constructor, sets values of above attributes
+     * @param f stores the train's fuel type
+     * @param maxFuel stores the max fuel level
+     * @param currentLevel stores the current fuel level
+    */
     public Engine (FuelType f, double maxFuel) {
         this.f = f;
         this.maxFuel = maxFuel;
@@ -29,16 +30,17 @@ public class Engine {
     public void refuel() {
         this.currentLevel = this.maxFuel;
     }
-    // decreases the fuel level and returns information about the current level
+    /** decreases the fuel level and returns information about the current level
+     *  @return boolean
+     */
     public Boolean go() {
-        this.currentLevel = this.currentLevel - 10;
-        System.out.println("The remaining fuel level is: " + this.currentLevel);
-        if (this.currentLevel <= 0) {
+        if (this.currentLevel == 0) {
+            this.currentLevel = this.currentLevel - 10;
+            System.out.println("The remaining fuel level is: " + this.currentLevel);    
+            return true;
+        } else {
             System.out.println("Out of fuel!");
             return false;
-        }
-        else {
-            return true;
         }
     }
     

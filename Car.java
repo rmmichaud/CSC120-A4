@@ -2,46 +2,53 @@ import java.util.ArrayList;
 // deals with passenger placement throughout the cars, including capacity 
 public class Car {
     // declares list to store passengers and max capacity of the train
-    ArrayList<Passenger> passengersOnBoard;
+    private ArrayList<Passenger> passengersOnBoard;
     int maxCapacity;
-    // declares a new array list with the length of the capacity
+    /** declares a new array list with the length of the capacity
+     * @param int maxCapacity
+     */
     public Car(int maxCapacity) {
         this.passengersOnBoard = new ArrayList<Passenger>(maxCapacity);
         this.maxCapacity = maxCapacity;
 
     }
-    // returns the max capacity of the train
+    /** returns max capacity of the car 
+     * @return int maxCapacity
+     */
     public int getCapacity() {
         return this.maxCapacity;
     }
-    // returns the seats remaining on the train
+    /** returns seats remaining in the car 
+     * @return int seatsRemaining
+     */
     public int seatsRemaining() {
         return this.maxCapacity - passengersOnBoard.size();
     }
-    // adds passengers to the train, first checking if there is room or if the passenger has already boarded
-    public Boolean addPassenger(Passenger p) {
+    /** adds passengers to the train, first checking if there 
+     * is room or if the passenger has already boarded
+     * @param Passenger p
+     * @return boolean
+     */
+    public void addPassenger(Passenger p) {
         if (this.maxCapacity <= passengersOnBoard.size()) {
-            System.out.println("Not enough room.");
-            return false;
+            throw new RuntimeException("Not enough room");
         }
         if (this.passengersOnBoard.contains(p)){
-            System.out.println("This passenger has already boarded.");
-            return false;
+            throw new RuntimeException("This passenger has already boarded.");
         }
         else {
             passengersOnBoard.add(p);
-            return true;
         }
     }
-    // removes passengers from the train, first checking if the passenger is on the train
-    public Boolean removePassenger(Passenger p) {
+    /** removes passengers from the train, first checking if the passenger is on the train
+     * @param Passenger p
+     * @return boolean
+     */
+    public void removePassenger(Passenger p) {
         if (passengersOnBoard.contains(p)) {
             passengersOnBoard.remove(p);
-            return true;
-        }
-        else {
-            System.out.println("Passenger is not on board.");
-            return false;
+        } else {
+            throw new RuntimeException("Passenger is not on board.");
         }
     }
     // prints out the list of passengers on board
